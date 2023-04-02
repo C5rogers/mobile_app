@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -8,10 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
       title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -23,20 +23,35 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   final String title;
-  const MyHomePage({super.key, required this.title});  
+  const MyHomePage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
+        title: Text('this is header'),
       ),
       body: Center(
-        child: Text(
-          'Hello, World!',
+        child: Container(
+          color: Colors.amber[400],
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'hellow there this is natty',
+                  selectionColor: Colors.greenAccent[300],
+                ),
+                Container(
+                  color: Colors.grey[300],
+                  child: Center(child: Text('hellow there too')),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(30),
+                ),
+              ]),
         ),
       ),
     );
+    ;
   }
 }
