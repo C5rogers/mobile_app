@@ -2,56 +2,113 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(home: NinjaCard()));
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class NinjaCard extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Hello World',
-
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  State<NinjaCard> createState() => _NinjaCardState();
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});
-
+class _NinjaCardState extends State<NinjaCard> {
+  int ninjaStatus = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text('this is header'),
+        title: Text('Ninja Id Card'),
+        backgroundColor: Colors.grey[850],
+        elevation: 0,
+        centerTitle: true,
       ),
-      body: Center(
-        child: Container(
-          color: Colors.amber[400],
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.end,
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/minions.jpg'),
+                radius: 40,
+              ),
+            ),
+            Divider(
+              height: 90,
+              color: Colors.grey[800],
+            ),
+            Text(
+              'NAME',
+              style: TextStyle(
+                color: Colors.grey,
+                letterSpacing: 2,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Natiman',
+              style: TextStyle(
+                color: Colors.amberAccent[200],
+                letterSpacing: 2,
+                fontWeight: FontWeight.bold,
+                fontSize: 28,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              'CURRENT NINJA LEVEL',
+              style: TextStyle(
+                color: Colors.grey,
+                letterSpacing: 2,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              '$ninjaStatus',
+              style: TextStyle(
+                color: Colors.amberAccent[200],
+                letterSpacing: 2,
+                fontWeight: FontWeight.bold,
+                fontSize: 28,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
               children: [
+                Icon(
+                  Icons.email,
+                  color: Colors.grey[400],
+                ),
+                SizedBox(width: 10),
                 Text(
-                  'hellow there this is natty',
-                  selectionColor: Colors.greenAccent[300],
+                  'natiman@gmail.com',
+                  style: TextStyle(
+                      color: Colors.grey[400],
+                      fontWeight: FontWeight.w100,
+                      fontSize: 18,
+                      letterSpacing: 1),
                 ),
-                Container(
-                  color: Colors.grey[300],
-                  child: Center(child: Text('hellow there too')),
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.all(30),
-                ),
-              ]),
+              ],
+            ),
+          ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaStatus += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
+      ),
     );
-    ;
   }
 }
